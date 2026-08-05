@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso Grupos — 11° Encuentro de Tambores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Passion+One:wght@400;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  background:#0d0618;
+  color:#ede4d4;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative;
+}
+:root{
+  --indigo-deep:#0d0618;
+  --purple-dark:#1a0a2e;
+  --purple-mid:#2d1854;
+  --purple-light:#4a2080;
+  --blue-vibrant:#4a8fd4;
+  --copper:#d4913d;
+  --copper-light:#e8a94e;
+  --orange:#e8722a;
+  --warm-white:#ede4d4;
+  --cream:#f5ead6;
+  --text-muted:rgba(237,228,212,0.6);
+}
+
+/* Ripple background */
+.ripple-bg{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0}
+.ripple-bg .ring{position:absolute;border-radius:50%;border:2px solid transparent;animation:rip 8s ease-out infinite}
+.ripple-bg .ring:nth-child(1){width:100px;height:100px;border-color:rgba(212,145,61,0.25);animation-delay:0s}
+.ripple-bg .ring:nth-child(2){width:250px;height:250px;border-color:rgba(74,143,212,0.18);animation-delay:1s}
+.ripple-bg .ring:nth-child(3){width:420px;height:420px;border-color:rgba(74,32,128,0.2);animation-delay:2s}
+.ripple-bg .ring:nth-child(4){width:620px;height:620px;border-color:rgba(212,145,61,0.12);animation-delay:3s}
+.ripple-bg .ring:nth-child(5){width:850px;height:850px;border-color:rgba(74,143,212,0.08);animation-delay:4s}
+.ripple-bg .ring:nth-child(6){width:1100px;height:1100px;border-color:rgba(45,24,84,0.15);animation-delay:5s}
+@keyframes rip{0%{transform:scale(0.85);opacity:1;border-width:3px}50%{opacity:0.5}100%{transform:scale(1.5);opacity:0;border-width:1px}}
+
+.login-card{
+  position:relative;
+  z-index:2;
+  background:rgba(45,24,84,0.4);
+  border:1px solid rgba(212,145,61,0.2);
+  border-radius:16px;
+  padding:2.5rem 2rem;
+  width:min(420px,90vw);
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+.login-card h1{
+  font-family:'Bungee',sans-serif;
+  font-size:1.6rem;
+  color:var(--cream);
+  text-align:center;
+  margin-bottom:0.3em;
+  text-shadow:2px 2px 0 rgba(45,24,84,0.8);
+}
+.login-card .sub{
+  font-family:'Passion One',sans-serif;
+  color:var(--copper);
+  text-align:center;
+  letter-spacing:0.15em;
+  font-size:0.9rem;
+  margin-bottom:2rem;
+}
+.form-group{margin-bottom:1.2rem}
+.form-group label{
+  display:block;
+  font-size:0.8rem;
+  letter-spacing:0.1em;
+  color:var(--text-muted);
+  text-transform:uppercase;
+  margin-bottom:0.4rem;
+}
+.form-group input{
+  width:100%;
+  padding:0.75rem 1rem;
+  background:rgba(13,6,24,0.6);
+  border:1px solid rgba(212,145,61,0.25);
+  border-radius:8px;
+  color:var(--cream);
+  font-family:'Nunito',sans-serif;
+  font-size:1rem;
+  outline:none;
+  transition:border-color 0.3s;
+}
+.form-group input:focus{
+  border-color:var(--copper);
+  box-shadow:0 0 12px rgba(212,145,61,0.15);
+}
+.login-btn{
+  width:100%;
+  padding:0.85rem;
+  background:linear-gradient(135deg,var(--copper),var(--orange));
+  border:none;
+  border-radius:8px;
+  color:var(--indigo-deep);
+  font-family:'Passion One',sans-serif;
+  font-size:1.1rem;
+  letter-spacing:0.1em;
+  cursor:pointer;
+  transition:all 0.3s;
+  margin-top:0.5rem;
+}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,145,61,0.3)}
+.login-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.error-msg{
+  color:#e85454;
+  text-align:center;
+  font-size:0.85rem;
+  margin-top:0.8rem;
+  min-height:1.2em;
+}
+.back-link{
+  display:block;
+  text-align:center;
+  margin-top:1.5rem;
+  color:var(--text-muted);
+  font-size:0.85rem;
+  text-decoration:none;
+  transition:color 0.3s;
+}
+.back-link:hover{color:var(--copper)}
+</style>
+</head>
+<body>
+
+<div class="ripple-bg">
+  <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+  <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+</div>
+
+<div class="login-card">
+  <h1>Acceso Grupos</h1>
+  <p class="sub">11° Encuentro de Tambores y Danza</p>
+  <div class="form-group">
+    <label>Usuario</label>
+    <input type="text" id="username" placeholder="ej: vibra" autocomplete="username">
+  </div>
+  <div class="form-group">
+    <label>Contraseña</label>
+    <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+  </div>
+  <button class="login-btn" id="login-btn" onclick="doLogin()">Ingresar</button>
+  <p class="error-msg" id="error-msg"></p>
+  <a href="index.html" class="back-link">← Volver al sitio</a>
+</div>
+
+<!-- Firebase SDK (compat) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script>
+// ============================================
+// ⚠️  REEMPLAZAR CON TU CONFIG DE FIREBASE  ⚠️
+// ============================================
+const firebaseConfig = {
+  apiKey: "AIzaSyAGO9kVQjMu9cHLD9U-DIsFq-z-NtCrqvk",
+  authDomain: "encuentrotambores.firebaseapp.com",
+  projectId: "encuentrotambores",
+  storageBucket: "encuentrotambores.firebasestorage.app",
+  messagingSenderId: "216888772742",
+  appId: "1:216888772742:web:61c3a462def7f9c677a907"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth ? firebase.auth() : null;
+
+// Si ya está logueado, ir al panel
+if(auth){
+  auth.onAuthStateChanged(user => {
+    if(user) window.location.href = 'panel.html';
+  });
+}
+
+const EMAIL_DOMAIN = '@encuentrotambores.app';
+
+function doLogin(){
+  const user = document.getElementById('username').value.trim().toLowerCase();
+  const pass = document.getElementById('password').value;
+  const btn = document.getElementById('login-btn');
+  const err = document.getElementById('error-msg');
+  if(!user || !pass){ err.textContent = 'Completá usuario y contraseña'; return; }
+  btn.disabled = true;
+  btn.textContent = 'Ingresando...';
+  err.textContent = '';
+  const email = user + EMAIL_DOMAIN;
+  auth.signInWithEmailAndPassword(email, pass)
+    .then(() => { window.location.href = 'panel.html'; })
+    .catch(e => {
+      err.textContent = 'Usuario o contraseña incorrectos';
+      btn.disabled = false;
+      btn.textContent = 'Ingresar';
+    });
+}
+document.getElementById('password').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+</script>
+</body>
+</html>
